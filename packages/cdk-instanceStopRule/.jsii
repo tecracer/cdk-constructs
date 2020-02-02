@@ -441,34 +441,28 @@
       }
     }
   },
-  "description": "instance_stop_rule",
+  "description": "EC2 instance with cloudwatch rule to stop it",
   "homepage": "git@github.com:tecracer/cdk-constructs.git",
   "jsiiVersion": "0.21.2 (build 4370756)",
+  "keywords": [
+    "cdk",
+    "EC2",
+    "cloudwatch rule"
+  ],
   "license": "Apache-2.0",
-  "name": "instance_stop_rule",
+  "name": "cdk-instance-stop-rule",
   "readme": {
-    "markdown": "# Welcome to your CDK TypeScript Construct Library project!\n\nYou should explore the contents of this project. It demonstrates a CDK Construct Library that includes a construct (`InstanceStopRule`)\nwhich contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.\n\nThe construct defines an interface (`InstanceStopRuleProps`) to configure the visibility timeout of the queue.\n\n## Useful commands\n\n * `npm run build`   compile typescript to js\n * `npm run watch`   watch for changes and compile\n * `npm run test`    perform the jest unit tests"
+    "markdown": "# tecRacer CDK Packages\n\nThis package creates an EC2 instance with an Cloudwatch Stop rule included.\n\n## Installation\n\nnode\n\n```bash\nnpm i cdk-instance-stop-rule\n```\n\n\n\n## Example usage ts\n\n```js\n\n    // The code that defines your stack goes here\n    const testVPC = new Vpc(this, 'TestVpc', {\n      maxAzs: 2,\n  });\n  const linuxImage = new AmazonLinuxImage({\n      generation: AmazonLinuxGeneration.AMAZON_LINUX_2,\n      edition: AmazonLinuxEdition.STANDARD,\n      virtualization: AmazonLinuxVirt.HVM,\n      storage: AmazonLinuxStorage.GENERAL_PURPOSE,\n  });\n  const instanceType = InstanceType.of(InstanceClass.T3A, InstanceSize.MICRO);\n  new InstanceStopRule(this, \"myTest Instance\",{\n      machineImage: linuxImage,\n      instanceType: instanceType,\n      instanceName: \"testServer\",\n      vpc: testVPC,\n      stopHour: 17,\n  });\n```\n\n## Useful commands\n\n * `npm run build`   compile typescript to js\n * `npm run watch`   watch for changes and compile\n * `npm run test`    perform the jest unit tests"
   },
   "repository": {
-    "directory": "packages/instanceStopRule",
+    "directory": "packages/@trc-cdk/instanceStopRule",
     "type": "git",
     "url": "git@github.com:tecracer/cdk-constructs.git"
   },
   "schema": "jsii/0.10.0",
   "targets": {
-    "dotnet": {
-      "namespace": "Tecracer.CDKNamespace",
-      "packageId": "Tecracer.ec2stoprule"
-    },
-    "java": {
-      "maven": {
-        "artifactId": "ec2stoprule",
-        "groupId": "de.tecracer.cdk"
-      },
-      "package": "de.tecracer.cdk"
-    },
     "js": {
-      "npm": "instance_stop_rule"
+      "npm": "cdk-instance-stop-rule"
     },
     "python": {
       "distName": "tecracer.cdk",
@@ -476,10 +470,13 @@
     }
   },
   "types": {
-    "instance_stop_rule.InstanceStopRule": {
-      "assembly": "instance_stop_rule",
+    "cdk-instance-stop-rule.InstanceStopRule": {
+      "assembly": "cdk-instance-stop-rule",
       "base": "@aws-cdk/aws-ec2.Instance",
-      "fqn": "instance_stop_rule.InstanceStopRule",
+      "docs": {
+        "summary": "Instance with an Cloudwatch stop rule."
+      },
+      "fqn": "cdk-instance-stop-rule.InstanceStopRule",
       "initializer": {
         "parameters": [
           {
@@ -497,7 +494,7 @@
           {
             "name": "localProps",
             "type": {
-              "fqn": "instance_stop_rule.InstanceStopRuleProps"
+              "fqn": "cdk-instance-stop-rule.InstanceStopRuleProps"
             }
           }
         ]
@@ -505,14 +502,14 @@
       "kind": "class",
       "locationInModule": {
         "filename": "lib/InstanceStopRule.ts",
-        "line": 11
+        "line": 16
       },
       "name": "InstanceStopRule"
     },
-    "instance_stop_rule.InstanceStopRuleProps": {
-      "assembly": "instance_stop_rule",
+    "cdk-instance-stop-rule.InstanceStopRuleProps": {
+      "assembly": "cdk-instance-stop-rule",
       "datatype": true,
-      "fqn": "instance_stop_rule.InstanceStopRuleProps",
+      "fqn": "cdk-instance-stop-rule.InstanceStopRuleProps",
       "interfaces": [
         "@aws-cdk/aws-ec2.InstanceProps"
       ],
@@ -525,10 +522,13 @@
       "properties": [
         {
           "abstract": true,
+          "docs": {
+            "summary": "Hour to stop the instance."
+          },
           "immutable": true,
           "locationInModule": {
             "filename": "lib/InstanceStopRule.ts",
-            "line": 7
+            "line": 10
           },
           "name": "stopHour",
           "type": {
@@ -538,6 +538,6 @@
       ]
     }
   },
-  "version": "0.1.0",
-  "fingerprint": "a91MTDx+FgOfLpDigDIdNGhw+OW4HSbm3ZBdyEmUqx0="
+  "version": "0.1.1",
+  "fingerprint": "X0xfrHs7MlGypo0BSMmtGOqK5GRad3fhxq4fxooAos8="
 }

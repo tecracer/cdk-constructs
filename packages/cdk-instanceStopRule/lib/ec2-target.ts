@@ -1,7 +1,6 @@
-import { Arn, Construct,} from '@aws-cdk/core';
+import { Arn, Construct, Stack,} from '@aws-cdk/core';
 import events = require('@aws-cdk/aws-events');
 import iam = require('@aws-cdk/aws-iam');
-import ec2 = require('@aws-cdk/aws-ec2');
 import { Role, PolicyDocument } from '@aws-cdk/aws-iam';
 import { Instance } from '@aws-cdk/aws-ec2';
 
@@ -22,10 +21,12 @@ export interface EC2StopFunctionProps {
  */
 export class EC2Stop implements events.IRuleTarget {
     role: Role;
-    cfnInstance: ec2.CfnInstance;
+    instance: Instance;
+    scope: Construct;
     // Input is InstanceId
     constructor(scope: Construct, _id: string, instance: Instance) {
-        this.cfnInstance = instance.instance;
+        this.instance = instance;
+        this.scope = scope;
         const policyDoc = new PolicyDocument();
         const statement = new iam.PolicyStatement();
         statement.addActions("ec2:RebootInstances",
@@ -34,9 +35,10 @@ export class EC2Stop implements events.IRuleTarget {
             {
                 resource: "instance",
                 service: "ec2",
-                resourceName: instance.instance.ref,
-            }, 
-            instance.stack);
+                resourceName: this.instance.instanceId,
+            },
+            Stack.of(scope)
+            );
         statement.addResources(arn);
         policyDoc.addStatements( statement);
         this.role = new Role(scope, 'stopEventRole',
@@ -55,10 +57,10 @@ export class EC2Stop implements events.IRuleTarget {
     // Todo: Eval Account Role
     public bind(_rule: events.IRule, _id?: string): events.RuleTargetConfig {
         return {
-            id: this.cfnInstance.ref,
-            arn: "arn:aws:events:"+'eu-central-1'+":"+669453403305+":target/stop-instance",
-            targetResource: this.cfnInstance,
-            input:  events.RuleTargetInput.fromText(this.cfnInstance.ref),
+            id: this.instance.instanceId,
+            arn: "arn:aws:events:"+Stack.of(this.scope).region+":"+Stack.of(this.scope).account+":target/stop-instance",
+            targetResource: this.instance,
+            input:  events.RuleTargetInput.fromText(this.instance.instanceId),
             role: this.role,
         };
     }

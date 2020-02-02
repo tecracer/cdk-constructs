@@ -1,5 +1,5 @@
-import { App, Stack, StackProps } from '@aws-cdk/core';
-import {AmazonLinuxGeneration, AmazonLinuxImage, AmazonLinuxEdition, AmazonLinuxStorage, InstanceType, InstanceClass, InstanceSize, AmazonLinuxVirt, Vpc} from '@aws-cdk/aws-ec2';
+import { App, Stack, StackProps } from '../node_modules/@aws-cdk/core/lib';
+import {AmazonLinuxGeneration, AmazonLinuxImage, AmazonLinuxEdition, AmazonLinuxStorage, InstanceType, InstanceClass, InstanceSize, AmazonLinuxVirt, Vpc} from '../node_modules/@aws-cdk/aws-ec2/lib';
 
 import {InstanceStopRule} from '../lib/InstanceStopRule';
 
