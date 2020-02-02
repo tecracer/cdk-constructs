@@ -1,0 +1,67 @@
+{
+  "name": "instance_stop_rule",
+  "version": "0.1.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build-package": "jsii",
+    "package": "jsii-pacmak",
+    "watch": "tsc -w",
+    "test": "jest",
+    "lint": "tslint 'lib/**/*.ts{,x}'"
+  },
+  "jsii": {
+    "outdir": "../../dist",
+    "targets": {
+      "python": {
+        "distName": "tecracer.cdk",
+        "module": "tecracer.ec2stoprule"
+      },
+      "java": {
+        "package": "de.tecracer.cdk",
+        "maven": {
+          "groupId": "de.tecracer.cdk",
+          "artifactId": "ec2stoprule"
+        }
+      },
+      "dotnet": {
+        "namespace": "Tecracer.CDKNamespace",
+        "packageId": "Tecracer.ec2stoprule"
+      }
+    }
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.22.0",
+    "@aws-cdk/aws-ec2": "^1.22.0",
+    "@types/jest": "^25.1.1",
+    "@types/node": "10.17.5",
+    "jest": "^24.9.0",
+    "jsii": "^0.21.2",
+    "jsii-pacmak": "^0.21.2",
+    "ts-jest": "^24.3.0",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  },
+  "peerDependencies": {
+    "@aws-cdk/core": "^1.22.0",
+    "@aws-cdk/aws-events": "^1.22.0",
+    "@aws-cdk/aws-iam": "^1.22.0",
+    "@aws-cdk/aws-sns": "^1.22.0",
+    "@aws-cdk/aws-sns-subscriptions": "^1.22.0",
+    "@aws-cdk/aws-sqs": "^1.22.0"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-events": "^1.22.0",
+    "@aws-cdk/aws-iam": "^1.22.0",
+    "@aws-cdk/aws-sns": "^1.22.0",
+    "@aws-cdk/aws-sns-subscriptions": "^1.22.0",
+    "@aws-cdk/aws-sqs": "^1.22.0",
+    "@aws-cdk/core": "^1.22.0"
+  }
+  ,
+  "author": {
+    "name": "Gernot Glawe"
+  },
+  "license": "Apache-2.0"
+}
