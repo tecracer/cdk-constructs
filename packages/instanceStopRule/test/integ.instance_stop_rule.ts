@@ -18,7 +18,7 @@ class InstanceStopRuleInteg extends Stack {
             storage: AmazonLinuxStorage.GENERAL_PURPOSE,
           });
       
-          const instanceType = InstanceType.of(InstanceClass.COMPUTE5, InstanceSize.LARGE);
+          const instanceType = InstanceType.of(InstanceClass.T3A, InstanceSize.MICRO);
       
          
           new InstanceStopRule(this,"StopRule",

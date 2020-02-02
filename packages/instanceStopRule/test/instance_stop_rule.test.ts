@@ -1,4 +1,4 @@
-import { expect as expectCDK, haveResource, SynthUtils } from '@aws-cdk/assert';
+import { expect as expectCDK, haveResource } from '@aws-cdk/assert';
 import * as cdk from '@aws-cdk/core';
 import InstanceStopRule = require('../lib/index');
 import { Vpc, AmazonLinuxImage, AmazonLinuxGeneration, AmazonLinuxEdition, AmazonLinuxVirt, AmazonLinuxStorage, InstanceType, InstanceClass, InstanceSize } from '@aws-cdk/aws-ec2';
@@ -18,7 +18,7 @@ test('Cloudwatch Rule created', () => {
           storage: AmazonLinuxStorage.GENERAL_PURPOSE,
         });
     
-        const instanceType = InstanceType.of(InstanceClass.COMPUTE5, InstanceSize.LARGE);
+        const instanceType = InstanceType.of(InstanceClass.T3A, InstanceSize.MICRO);
     
        
         new InstanceStopRule.InstanceStopRule(stack,"StopRule",

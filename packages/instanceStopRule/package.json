@@ -46,6 +46,7 @@
   "peerDependencies": {
     "@aws-cdk/core": "^1.22.0",
     "@aws-cdk/aws-events": "^1.22.0",
+    "@aws-cdk/aws-ec2": "^1.22.0",
     "@aws-cdk/aws-iam": "^1.22.0",
     "@aws-cdk/aws-sns": "^1.22.0",
     "@aws-cdk/aws-sns-subscriptions": "^1.22.0",
@@ -63,5 +64,10 @@
   "author": {
     "name": "Gernot Glawe"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tecracer/cdk-constructs.git",
+    "directory": "packages/instanceStopRule"
+  }
 }

@@ -1,8 +1,8 @@
-import { Arn,ArnComponents, Construct, Stack} from '@aws-cdk/core';
+import { Arn, Construct,} from '@aws-cdk/core';
 import events = require('@aws-cdk/aws-events');
 import iam = require('@aws-cdk/aws-iam');
 import ec2 = require('@aws-cdk/aws-ec2');
-import { Role, Policy, PolicyDocument } from '@aws-cdk/aws-iam';
+import { Role, PolicyDocument } from '@aws-cdk/aws-iam';
 import { Instance } from '@aws-cdk/aws-ec2';
 
 /**
@@ -24,7 +24,7 @@ export class EC2Stop implements events.IRuleTarget {
     role: Role;
     cfnInstance: ec2.CfnInstance;
     // Input is InstanceId
-    constructor(scope: Construct, id: string, instance: Instance) {
+    constructor(scope: Construct, _id: string, instance: Instance) {
         this.cfnInstance = instance.instance;
         const policyDoc = new PolicyDocument();
         const statement = new iam.PolicyStatement();
@@ -52,11 +52,11 @@ export class EC2Stop implements events.IRuleTarget {
      * Returns a RuleTarget that can be used to trigger ec2 Stop
      * result from a CloudWatch event.
      */
-    public bind(rule: events.IRule, _id?: string): events.RuleTargetConfig {
+    // Todo: Eval Account Role
+    public bind(_rule: events.IRule, _id?: string): events.RuleTargetConfig {
         return {
-            // Put your account id here
-            id: '',
-            arn: "arn:aws:events:eu-central-1:12345678912:target/stop-instance",
+            id: this.cfnInstance.ref,
+            arn: "arn:aws:events:"+'eu-central-1'+":"+669453403305+":target/stop-instance",
             targetResource: this.cfnInstance,
             input:  events.RuleTargetInput.fromText(this.cfnInstance.ref),
             role: this.role,
